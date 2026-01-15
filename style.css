@@ -192,6 +192,60 @@ body {
     margin-bottom: 0;
 }
 
+/* Important Note Highlight */
+.important-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px 20px;
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.15) 0%, rgba(245, 158, 11, 0.1) 100%);
+    border: 2px solid rgba(251, 191, 36, 0.4);
+    border-radius: var(--radius-md);
+    margin-top: 8px;
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 5px rgba(251, 191, 36, 0.15);
+    }
+}
+
+.important-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.important-note p {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.important-note strong {
+    color: #fbbf24;
+}
+
 /* ===========================
    Quiz Items
    =========================== */
