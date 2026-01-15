@@ -92,6 +92,120 @@ app.post('/api/submit', async (req, res) => {
     }
 });
 
+// Question names for reactions quiz
+const REACTION_NAMES = {
+    1: 'Revenge Fantasies',
+    2: 'Media Violence',
+    3: 'Untraceable Punishment',
+    4: 'Power/Control',
+    5: 'Accidental Harm',
+    6: 'Schadenfreude',
+    7: 'Exploiting Weaknesses'
+};
+
+// API endpoint for reactions quiz submission
+app.post('/api/submit-reactions', async (req, res) => {
+    try {
+        const { score, maxScore, percentage, level, answers, optionalThoughts, contactEmail, contactPhone, timestamp, userAgent, referrer } = req.body;
+
+        // Get visitor IP address
+        const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim()
+            || req.headers['x-real-ip']
+            || req.socket.remoteAddress
+            || 'Unknown';
+
+        // Format the message for Telegram
+        const message = formatReactionsMessage({
+            ip,
+            score,
+            maxScore,
+            percentage,
+            level,
+            answers,
+            optionalThoughts: optionalThoughts || '',
+            contactEmail: contactEmail || '',
+            contactPhone: contactPhone || '',
+            timestamp,
+            userAgent,
+            referrer
+        });
+
+        // Send to Telegram
+        const sent = await sendToTelegram(message);
+
+        if (sent) {
+            res.json({ success: true, message: 'Result recorded' });
+        } else {
+            res.json({ success: false, message: 'Telegram notification failed' });
+        }
+    } catch (error) {
+        console.error('API Error:', error);
+        res.status(500).json({ success: false, error: error.message });
+    }
+});
+
+// Format message for Reactions quiz
+function formatReactionsMessage(data) {
+    const levelInfo = {
+        low: { emoji: '🟢', text: 'Low (0-3)', desc: 'Low tendency' },
+        moderate: { emoji: '🟡', text: 'Moderate (4-7)', desc: 'Some darker ideas appear' },
+        higher: { emoji: '🟠', text: 'Higher (8-11)', desc: 'Leans toward control/payback' },
+        veryHigh: { emoji: '🔴', text: 'Very High (12-14)', desc: 'Strong pull toward power/revenge' }
+    };
+
+    const info = levelInfo[data.level] || { emoji: '⚪', text: data.level, desc: '' };
+    const browser = parseUserAgent(data.userAgent);
+
+    // Format individual answers
+    let answersText = '';
+    if (data.answers) {
+        for (let i = 1; i <= 7; i++) {
+            const val = data.answers[i] ?? '?';
+            const emoji = val === 2 ? '🔴' : val === 1 ? '🟡' : '⚪';
+            answersText += `${emoji} Q${i}: ${val} (${REACTION_NAMES[i]})\n`;
+        }
+    }
+
+    const message = `
+🧠 *Inner Reactions Quiz*
+━━━━━━━━━━━━━━━━━━━━━━━
+
+${info.emoji} *Result:* ${info.text}
+📊 *Score:* ${data.score} / ${data.maxScore} (${data.percentage}%)
+💡 *Interpretation:* ${info.desc}
+
+━━━━━━━━━━━━━━━━━━━━━━━
+*ANSWERS*
+━━━━━━━━━━━━━━━━━━━━━━━
+${answersText}${data.optionalThoughts ? `
+━━━━━━━━━━━━━━━━━━━━━━━
+*OPTIONAL THOUGHTS*
+━━━━━━━━━━━━━━━━━━━━━━━
+${data.optionalThoughts}
+` : ''}
+━━━━━━━━━━━━━━━━━━━━━━━
+*VISITOR INFO*
+━━━━━━━━━━━━━━━━━━━━━━━
+🌐 IP: \`${data.ip}\`
+🖥️ Browser: ${browser}
+🔗 Referrer: ${data.referrer || 'Direct'}
+⏰ Time: ${new Date(data.timestamp).toLocaleString('en-US', {
+        timeZone: 'Asia/Dhaka',
+        dateStyle: 'medium',
+        timeStyle: 'short'
+    })}${data.contactEmail || data.contactPhone ? `
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📬 *CONTACT INFO*
+━━━━━━━━━━━━━━━━━━━━━━━
+${data.contactEmail ? `📧 Email: ${data.contactEmail}` : ''}${data.contactEmail && data.contactPhone ? '\n' : ''}${data.contactPhone ? `📱 Phone: ${data.contactPhone}` : ''}` : ''}
+
+⚠️ _Not a diagnosis - for self-reflection only_
+    `.trim();
+
+    return message;
+}
+
 // Format message for Telegram with Factor scores and individual answers
 function formatTelegramMessage(data) {
     // Level emoji and text

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inner Reactions – Hypothetical Thoughts</title>
+    <meta name="description"
+        content="A quick add-on quiz exploring how you might react in imaginary situations. For self-reflection only.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">How Might You React in These Imaginary Situations?</h1>
+            <p class="subtitle">🧠 Inner Reactions – Hypothetical Thoughts</p>
+        </header>
+
+        <div class="intro-box">
+            <p>This quick add-on is just for curiosity — it looks at how you might feel or think in made-up scenarios
+                that most people never experience. There are no right or wrong answers. It's only for self-reflection
+                and completely private. <strong>No diagnosis, no judgment, just insight.</strong></p>
+        </div>
+
+        <div class="instructions">
+            <h2>Instructions</h2>
+            <p>For each situation, choose the number that best matches what you would most likely feel or think if it
+                really happened (even if it's very unlikely):</p>
+            <ul class="scale-legend">
+                <li><span class="scale-num">0</span> Does not apply / I would never feel or think that way</li>
+                <li><span class="scale-num">1</span> Somewhat / sometimes / it depends on the situation</li>
+                <li><span class="scale-num">2</span> Definitely / most of the time / that's exactly how I'd feel</li>
+            </ul>
+        </div>
+
+        <form id="reactionsForm">
+            <div class="quiz-items">
+                <!-- Question 1 -->
+                <div class="quiz-item" data-question="1">
+                    <div class="question-header">
+                        <span class="question-number">1</span>
+                        <h3>Revenge Fantasies</h3>
+                    </div>
+                    <p class="question-description">If someone humiliated you in front of others and got away with it,
+                        would you spend time imagining ways to get revenge or make them suffer emotionally or worse?</p>
+                    <div class="options">
+                        <label class="option-card">
+                            <input type="radio" name="r1" value="0" required>
+                            <span class="option-content">
+                                <span class="option-value">0</span>
+                                <span class="option-label">Never</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r1" value="1">
+                            <span class="option-content">
+                                <span class="option-value">1</span>
+                                <span class="option-label">Sometimes</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r1" value="2">
+                            <span class="option-content">
+                                <span class="option-value">2</span>
+                                <span class="option-label">Definitely</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="quiz-item" data-question="2">
+                    <div class="question-header">
+                        <span class="question-number">2</span>
+                        <h3>Media Violence Reaction</h3>
+                    </div>
+                    <p class="question-description">In a movie or show where a character gets badly hurt or killed, do
+                        you feel excitement, amusement, or satisfaction more than discomfort or sadness?</p>
+                    <div class="options">
+                        <label class="option-card">
+                            <input type="radio" name="r2" value="0" required>
+                            <span class="option-content">
+                                <span class="option-value">0</span>
+                                <span class="option-label">Never</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r2" value="1">
+                            <span class="option-content">
+                                <span class="option-value">1</span>
+                                <span class="option-label">Sometimes</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r2" value="2">
+                            <span class="option-content">
+                                <span class="option-value">2</span>
+                                <span class="option-label">Definitely</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="quiz-item" data-question="3">
+                    <div class="question-header">
+                        <span class="question-number">3</span>
+                        <h3>Untraceable Punishment</h3>
+                    </div>
+                    <p class="question-description">If you could punish someone who deeply betrayed you (cheated, lied,
+                        ruined your reputation) with no chance of getting caught, would the idea feel tempting or
+                        enjoyable?</p>
+                    <div class="options">
+                        <label class="option-card">
+                            <input type="radio" name="r3" value="0" required>
+                            <span class="option-content">
+                                <span class="option-value">0</span>
+                                <span class="option-label">Never</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r3" value="1">
+                            <span class="option-content">
+                                <span class="option-value">1</span>
+                                <span class="option-label">Sometimes</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r3" value="2">
+                            <span class="option-content">
+                                <span class="option-value">2</span>
+                                <span class="option-label">Definitely</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="quiz-item" data-question="4">
+                    <div class="question-header">
+                        <span class="question-number">4</span>
+                        <h3>Power & Control Fantasies</h3>
+                    </div>
+                    <p class="question-description">Do you ever imagine having total power over someone — making them
+                        obey, suffer, beg, or do whatever you want — just because you could?</p>
+                    <div class="options">
+                        <label class="option-card">
+                            <input type="radio" name="r4" value="0" required>
+                            <span class="option-content">
+                                <span class="option-value">0</span>
+                                <span class="option-label">Never</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r4" value="1">
+                            <span class="option-content">
+                                <span class="option-value">1</span>
+                                <span class="option-label">Sometimes</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r4" value="2">
+                            <span class="option-content">
+                                <span class="option-value">2</span>
+                                <span class="option-label">Definitely</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="quiz-item" data-question="5">
+                    <div class="question-header">
+                        <span class="question-number">5</span>
+                        <h3>Accidental Harm Response</h3>
+                    </div>
+                    <p class="question-description">If you accidentally caused serious harm to an innocent person (like
+                        a crash you caused), would you feel more annoyed about the hassle, legal trouble, or
+                        embarrassment than guilty or heartbroken about their pain?</p>
+                    <div class="options">
+                        <label class="option-card">
+                            <input type="radio" name="r5" value="0" required>
+                            <span class="option-content">
+                                <span class="option-value">0</span>
+                                <span class="option-label">Never</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r5" value="1">
+                            <span class="option-content">
+                                <span class="option-value">1</span>
+                                <span class="option-label">Sometimes</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r5" value="2">
+                            <span class="option-content">
+                                <span class="option-value">2</span>
+                                <span class="option-label">Definitely</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 6 -->
+                <div class="quiz-item" data-question="6">
+                    <div class="question-header">
+                        <span class="question-number">6</span>
+                        <h3>Schadenfreude</h3>
+                    </div>
+                    <p class="question-description">When someone you dislike goes through something bad (loses job, gets
+                        sick, has a breakup), do you feel secret satisfaction or "they had it coming" more than
+                        sympathy?</p>
+                    <div class="options">
+                        <label class="option-card">
+                            <input type="radio" name="r6" value="0" required>
+                            <span class="option-content">
+                                <span class="option-value">0</span>
+                                <span class="option-label">Never</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r6" value="1">
+                            <span class="option-content">
+                                <span class="option-value">1</span>
+                                <span class="option-label">Sometimes</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r6" value="2">
+                            <span class="option-content">
+                                <span class="option-value">2</span>
+                                <span class="option-label">Definitely</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 7 -->
+                <div class="quiz-item" data-question="7">
+                    <div class="question-header">
+                        <span class="question-number">7</span>
+                        <h3>Exploiting Weaknesses</h3>
+                    </div>
+                    <p class="question-description">If someone wronged you badly, would imagining using their secrets or
+                        weaknesses to completely break them emotionally feel satisfying or tempting?</p>
+                    <div class="options">
+                        <label class="option-card">
+                            <input type="radio" name="r7" value="0" required>
+                            <span class="option-content">
+                                <span class="option-value">0</span>
+                                <span class="option-label">Never</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r7" value="1">
+                            <span class="option-content">
+                                <span class="option-value">1</span>
+                                <span class="option-label">Sometimes</span>
+                            </span>
+                        </label>
+                        <label class="option-card">
+                            <input type="radio" name="r7" value="2">
+                            <span class="option-content">
+                                <span class="option-value">2</span>
+                                <span class="option-label">Definitely</span>
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Question 8 - Optional Text -->
+                <div class="quiz-item optional-text-item">
+                    <div class="question-header">
+                        <span class="question-number">✍️</span>
+                        <h3>Your thoughts – optional, private</h3>
+                    </div>
+                    <p class="question-description">Briefly describe any recurring fantasy or thought about harming,
+                        dominating, punishing, or getting even with someone who wronged you — or write "none" or "rare"
+                        if it doesn't apply.</p>
+                    <textarea id="optionalThoughts" name="optionalThoughts" class="optional-textarea"
+                        placeholder="This is completely optional and private..."></textarea>
+                </div>
+            </div>
+
+            <!-- Optional Contact Section -->
+            <div class="optional-contact">
+                <div class="contact-header">
+                    <h3>📧 Want to be contacted? <span class="optional-badge">100% Optional</span></h3>
+                    <p>If you'd like to discuss your results or have questions, you can leave your contact info below.
+                        <strong>This is completely optional</strong> — skip if you prefer to stay anonymous.</p>
+                </div>
+                <div class="contact-fields">
+                    <div class="contact-field">
+                        <label for="contactEmail">Email</label>
+                        <input type="email" id="contactEmail" name="contactEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="contact-field">
+                        <label for="contactPhone">Phone / WhatsApp</label>
+                        <input type="tel" id="contactPhone" name="contactPhone" placeholder="+1 (555) 123-4567">
+                    </div>
+                </div>
+            </div>
+
+            <div class="submit-section">
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <span class="btn-text">Show My Inner Reactions Score</span>
+                    <span class="btn-icon">→</span>
+                </button>
+            </div>
+        </form>
+
+        <section id="resultSection" class="result-section hidden">
+            <div class="result-card">
+                <h2>Your Inner Reactions Score</h2>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span class="score-value" id="scoreValue">0</span>
+                        <span class="score-total">/ 14</span>
+                    </div>
+                    <div class="score-percentage" id="scorePercentage">0%</div>
+                </div>
+                <div class="interpretation" id="interpretation">
+                    <!-- Interpretation text will be inserted here -->
+                </div>
+                <div class="closing-note">
+                    <p>💭 Thoughts and imagination are very different from real actions. Many people have intense or
+                        dark ideas sometimes — what matters most is how we treat others in real life. If any thoughts
+                        ever feel overwhelming, distressing, or push you toward real harm, talk to a trusted person or
+                        professional.</p>
+                </div>
+                <div class="result-actions">
+                    <button class="retake-btn" id="retakeBtn">Take Again</button>
+                    <a href="index.html" class="back-btn">← Back to Main Quiz</a>
+                </div>
+            </div>
+        </section>
+
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">← Back to Main Quiz</a>
+        </div>
+
+        <footer class="footer">
+            <p>This section is completely optional and can be skipped. For self-reflection only — not a diagnosis.</p>
+        </footer>
+    </div>
+
+    <script src="reactions.js"></script>
+</body>
+
+</html>
