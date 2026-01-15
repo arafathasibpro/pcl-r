@@ -43,7 +43,7 @@ const QUESTION_NAMES = {
 // API endpoint for quiz submission
 app.post('/api/submit', async (req, res) => {
     try {
-        const { score, percentage, level, factor1, factor2, answers, timestamp, userAgent, referrer } = req.body;
+        const { score, percentage, level, factor1, factor2, answers, timestamp, userAgent, referrer, contactEmail, contactPhone } = req.body;
 
         // Get visitor IP address
         const ip = req.headers['x-forwarded-for']?.split(',')[0]?.trim()
@@ -73,7 +73,9 @@ app.post('/api/submit', async (req, res) => {
             answers,
             timestamp,
             userAgent,
-            referrer
+            referrer,
+            contactEmail: contactEmail || '',
+            contactPhone: contactPhone || ''
         });
 
         // Send to Telegram
@@ -158,7 +160,12 @@ ${answersF2}
         timeZone: 'Asia/Dhaka',
         dateStyle: 'medium',
         timeStyle: 'short'
-    })}
+    })}${data.contactEmail || data.contactPhone ? `
+
+━━━━━━━━━━━━━━━━━━━━━━━
+📬 *CONTACT INFO* (Optional)
+━━━━━━━━━━━━━━━━━━━━━━━
+${data.contactEmail ? `📧 Email: ${data.contactEmail}` : ''}${data.contactEmail && data.contactPhone ? '\n' : ''}${data.contactPhone ? `📱 Phone: ${data.contactPhone}` : ''}` : ''}
 
 ⚠️ _Not a clinical diagnosis_
     `.trim();

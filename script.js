@@ -132,6 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
             resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
 
+        // Get optional contact info
+        const contactEmail = document.getElementById('contactEmail')?.value.trim() || '';
+        const contactPhone = document.getElementById('contactPhone')?.value.trim() || '';
+
         // Send results to backend (for Telegram notification)
         try {
             submitBtn.classList.add('loading');
@@ -141,7 +145,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 level,
                 factor1,
                 factor2,
-                answers
+                answers,
+                contactEmail,
+                contactPhone
             });
         } catch (error) {
             console.log('Backend notification skipped:', error.message);
