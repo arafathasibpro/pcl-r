@@ -1,13 +1,39 @@
 {
-    "cleanUrls": true,
-    "rewrites": [
+    "version": 2,
+    "builds": [
         {
-            "source": "/api/submit",
-            "destination": "/api/submit"
+            "src": "api/*.js",
+            "use": "@vercel/node"
         },
         {
-            "source": "/api/submit-reactions",
-            "destination": "/api/submit-reactions"
+            "src": "*.html",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "*.css",
+            "use": "@vercel/static"
+        },
+        {
+            "src": "*.js",
+            "use": "@vercel/static"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/submit",
+            "dest": "/api/submit.js"
+        },
+        {
+            "src": "/api/submit-reactions",
+            "dest": "/api/submit-reactions.js"
+        },
+        {
+            "src": "/reactions",
+            "dest": "/reactions.html"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/$1"
         }
     ]
 }
